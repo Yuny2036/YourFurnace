@@ -99,6 +99,6 @@ InitTestScene*.unity*
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
 
 #3rd-Party Assets
-3rd[Pp]arty-/
-[Tt]ext[Mm]esh [Pp]ro/
-[Xx][Rr]*/
+**/3rd[Pp]arty-*/
+**/[Tt]ext[Mm]esh [Pp]ro/
+**/[Xx][Rr]*/

@@ -5,4 +5,7 @@
 
 ## YourFurnace - Gear Upgrade Simulator and the RNG Blacksmith (VR Practice)
 This repository is created as a portfolio.  
-_Only scripts-related_ files and things will be tracked.
+*Only scripts-related* files and things will be tracked.
+
+I'm sorry to say that I'm not good at 'patterning' .gitignore, so I cannot offer any other project resources.
+Yes, I'm afraid that I don't want to accidentally upload third-party assets. (...)

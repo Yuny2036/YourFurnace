@@ -22,7 +22,7 @@ public abstract class EquipmentItem : Item, IHammerable
             _MoneyValue = Math.Max(0, value);
         }
     }
-    public string UniqueID { get; private set; }
+    public Guid UniqueID { get; private set; }
     public int HammerTrial { get; set; } // No need to be stored when going into the inventory.
 
     // Methods
@@ -32,7 +32,7 @@ public abstract class EquipmentItem : Item, IHammerable
         // Initialize item
         if (UniqueID == null)
         {
-            UniqueID = Guid.NewGuid().ToString();
+            UniqueID = Guid.NewGuid();
 
             // If you don't need enchanting/name or something, then these don't have to be placed here; go out of block.
             ItemName = equipmentData.ItemName;

@@ -10,13 +10,14 @@ public class EquipmentItemInstance : ItemInstance
     public Guid UniqueID;
     // public string FlavorText;
 
-    public EquipmentItemInstance(string ItemName, int MoneyValue, GameObject ThisPrefab) : this(ItemName, MoneyValue, ThisPrefab, Guid.NewGuid())
+    public EquipmentItemInstance(EquipmentData baseData) : this(baseData, Guid.NewGuid())
     {
 
     }
 
-    public EquipmentItemInstance(string ItemName, int MoneyValue, GameObject ThisPrefab, Guid UniqueID) : base(ItemName, MoneyValue, ThisPrefab)
+    public EquipmentItemInstance(EquipmentData baseData, Guid UniqueID)
     {
+        this.baseData = baseData;
         this.UniqueID = UniqueID;
     }
 }

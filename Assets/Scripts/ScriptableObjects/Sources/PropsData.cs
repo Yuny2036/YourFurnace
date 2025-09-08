@@ -7,7 +7,7 @@ public class PropsData : ScriptableObject
     public string ItemName = "Default Prop";
     public int Value;
     public int RequiredTrial;
-    public int MaximumStacks;
+    public int MaximumStacks = 1;
     public GameObject ThisPrefab;
 
     [Header("Next Item")]
@@ -17,5 +17,6 @@ public class PropsData : ScriptableObject
     public GameObject EffectOnDestory;
 
     [Header("Uniqueness and Flavor")]
+    public string baseID;
     public string FlavorText;
 }

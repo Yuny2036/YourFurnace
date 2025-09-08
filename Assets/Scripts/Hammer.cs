@@ -8,9 +8,8 @@ public class Hammer : MonoBehaviour
     [SerializeField] private AudioClip audioClipHammer;
     [SerializeField] private GameObject particlePrefab;
 
-    // Hammer Innate Members
+    // Hammer-Innate Members
     [SerializeField] private Collider hammerHead;
-    private float _hammerCooldown;
     public float hammerCooldown
     {
         get => _hammerCooldown;
@@ -20,6 +19,7 @@ public class Hammer : MonoBehaviour
         }
     }
 
+    // Unity Lifecycle
     void OnTriggerEnter(Collider other)
     {
         other.gameObject.TryGetComponent<IHammerable>(out var hammerable);
@@ -42,4 +42,7 @@ public class Hammer : MonoBehaviour
     {
         hammerCooldown -= 0.5f * Time.deltaTime;
     }
+
+    // Internal Fields
+    private float _hammerCooldown;
 }

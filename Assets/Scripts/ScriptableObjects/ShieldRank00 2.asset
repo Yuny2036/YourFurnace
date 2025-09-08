@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc60b7fcc81075d48912d4da6ba1ff6b, type: 3}
+  m_Name: ShieldRank00 2
+  m_EditorClassIdentifier: 
+  ItemName: Spiked Wooden Round Shield
+  Value: 175
+  RequiredTrial: 3
+  EquipmentRank: 2
+  EnhanceChance: 64.4999
+  NextItem: {fileID: 100000, guid: ea7498808a3368a40a625f84c1fd12ae, type: 3}
+  Effect: {fileID: 1193953125369175018, guid: 7d39067bead4bc14aa0b451564aa5198, type: 3}
+  FailureEffect: {fileID: 9080140021571130472, guid: 82066d902ed0dd6488ddfd32eb994801, type: 3}

@@ -30,6 +30,7 @@ public abstract class EquipmentItem : Item, IHammerable
     protected void Initializer()
     {
         // Initialize item
+        // This is the same element you should return, when you take it from the inventory.
         if (UniqueID == null)
         {
             UniqueID = Guid.NewGuid();

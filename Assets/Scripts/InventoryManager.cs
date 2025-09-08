@@ -137,7 +137,13 @@ public class InventoryManager : MonoBehaviour
         InventoryList.Add(itemInstance);
     }
 
-    
+    private void ShowItemInInventory()
+    {
+        foreach (var item in InventoryList)
+        {
+            
+        }
+    }
 
     // Internal fields
     private static InventoryManager _InventoryInstance;

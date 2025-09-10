@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class InventoryManager : MonoBehaviour
@@ -104,6 +104,8 @@ public class InventoryManager : MonoBehaviour
                 // }
                 // break;
         }
+
+        ShowItemInInventory();
     }
 
     public void TakeFromInventory(ItemInstance itemInstance)
@@ -124,6 +126,8 @@ public class InventoryManager : MonoBehaviour
                 }
                 break;
         }
+
+        ShowItemInInventory();
     }
 
     private void RemoveItemFromInventory(ItemInstance itemInstance)
@@ -140,11 +144,43 @@ public class InventoryManager : MonoBehaviour
         InventoryList.Add(itemInstance);
     }
 
-    private async UniTaskVoid ShowItemInInventoryAsync()
+    private void ShowItemInInventory()
     {
-        foreach (var item in InventoryList)
-        {
+        int i = 0;
 
+        foreach (var held in XRSocketInteractors)
+        {
+            if (held.interactablesSelected[0] != null) Destroy(held.interactablesSelected[0] as Component);
+        }
+
+        foreach (ItemInstance item in InventoryList)
+        {
+            if (item == null) continue;
+            if (item.ThisPrefab == null)
+            {
+                Debug.LogWarning("This item has no Prefab data!");
+                return;
+            }
+
+            GameObject prefab = Instantiate(item.ThisPrefab);
+            if (prefab.GetComponent<XRGrabInteractable>() == null)
+            {
+                Debug.LogError("This item has no XRGrabInteractable component!");
+                Destroy(prefab);
+                return;
+            }
+
+            prefab.transform.position = XRSocketInteractors[i].transform.position;
+            prefab.transform.rotation = XRSocketInteractors[i].transform.rotation;
+
+            XRGrabInteractable grabInteractable = prefab.GetComponent<XRGrabInteractable>();
+            if (grabInteractable != null)
+            {
+                XRSocketInteractors[i]
+                .interactionManager
+                .SelectEnter((IXRSelectInteractor)XRSocketInteractors[i], grabInteractable);
+            }
+            // grabInteractable.staySelectedOnDrop = true; this doesn't need; my thought.
         }
     }
 

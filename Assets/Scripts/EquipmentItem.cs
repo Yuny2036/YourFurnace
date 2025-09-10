@@ -52,6 +52,15 @@ public abstract class EquipmentItem : Item, IHammerable
         }
     }
 
+    public override ItemInstance ToItemInstance()
+    {
+        ItemInstance itemInstance = new EquipmentItemInstance(equipmentData, UniqueID);
+        itemInstance.ItemName = ItemName;
+        itemInstance.MoneyValue = MoneyValue;
+
+        return itemInstance as EquipmentItemInstance;
+    }
+
     // Internal fields
     private string _ItemName;
     private int _MoneyValue;

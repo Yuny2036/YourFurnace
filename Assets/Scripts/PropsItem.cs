@@ -31,6 +31,14 @@ public abstract class PropsItem : Item
         MoneyValue = propsData.Value;
     }
 
+    // Methods
+    public override ItemInstance ToItemInstance()
+    {
+        ItemInstance itemInstance = new PropsItemInstance(propsData, 1);
+
+        return itemInstance as PropsItemInstance;
+    }
+
     // Internal fields
     private string _ItemName;
     private int _MoneyValue;

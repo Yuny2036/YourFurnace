@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -17,7 +18,9 @@ public class InventoryManager : MonoBehaviour
     }
 
     // Properties and Fields
-    readonly List<ItemInstance> InventoryList = new();
+    readonly List<ItemInstance> InventoryList = new List<ItemInstance>();
+    readonly XRSocketInteractor[] XRSocketInteractors;
+    
 
     // Unity Lifecycle
     void Awake()
@@ -137,13 +140,14 @@ public class InventoryManager : MonoBehaviour
         InventoryList.Add(itemInstance);
     }
 
-    private void ShowItemInInventory()
+    private async UniTaskVoid ShowItemInInventoryAsync()
     {
         foreach (var item in InventoryList)
         {
-            
+
         }
     }
+
 
     // Internal fields
     private static InventoryManager _InventoryInstance;

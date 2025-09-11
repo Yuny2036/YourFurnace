@@ -20,7 +20,7 @@ public class InventoryManager : MonoBehaviour
     // Properties and Fields
     readonly List<ItemInstance> InventoryList = new List<ItemInstance>();
     readonly XRSocketInteractor[] XRSocketInteractors;
-    
+
 
     // Unity Lifecycle
     void Awake()
@@ -139,7 +139,7 @@ public class InventoryManager : MonoBehaviour
 
     private void PutItemInNewSlot(ItemInstance itemInstance)
     {
-        if (InventoryList.Count >= 5) throw new ArgumentOutOfRangeException("Inventory is full; Maximum is 4.");
+        if (InventoryList.Count > maximumSize) throw new ArgumentOutOfRangeException($"Inventory is full; Maximum is {maximumSize}");
 
         InventoryList.Add(itemInstance);
     }
@@ -187,4 +187,5 @@ public class InventoryManager : MonoBehaviour
 
     // Internal fields
     private static InventoryManager _InventoryInstance;
+    private int maximumSize = 4;
 }

@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Spiked Wooden Round Shield
   Value: 175
+  ThisPrefab: {fileID: 0}
   RequiredTrial: 3
   EquipmentRank: 2
   EnhanceChance: 64.4999
   NextItem: {fileID: 100000, guid: ea7498808a3368a40a625f84c1fd12ae, type: 3}
   Effect: {fileID: 1193953125369175018, guid: 7d39067bead4bc14aa0b451564aa5198, type: 3}
   FailureEffect: {fileID: 9080140021571130472, guid: 82066d902ed0dd6488ddfd32eb994801, type: 3}
+  FlavorText: Spiked! Watch out those spikes!

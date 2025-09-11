@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Leather Shield
   Value: 500
+  ThisPrefab: {fileID: 0}
   RequiredTrial: 5
   EquipmentRank: 4
   EnhanceChance: 25.3334
   NextItem: {fileID: 100000, guid: be6b7eb8095b9b24f93f3fa0b10891b2, type: 3}
   Effect: {fileID: 1193953125369175018, guid: 7d39067bead4bc14aa0b451564aa5198, type: 3}
   FailureEffect: {fileID: 5162910912013668194, guid: cf82839c411151342a7b2337bda9fb34, type: 3}
+  FlavorText: Leather shield doesn't mean that's made of leather-only.

@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Iron Round Shield
   Value: 900
+  ThisPrefab: {fileID: 0}
   RequiredTrial: 10
   EquipmentRank: 5
   EnhanceChance: 16.9999
   NextItem: {fileID: 100000, guid: 80166c6c4af61be41afc8d5da8254299, type: 3}
   Effect: {fileID: 1943286446490004412, guid: e953460ff16e0a6459684f9b77202b5c, type: 3}
   FailureEffect: {fileID: 5162910912013668194, guid: cf82839c411151342a7b2337bda9fb34, type: 3}
+  FlavorText: Don't ask why wooden shield has come from scrap.

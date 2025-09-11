@@ -14,9 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Wooden Round Shield
   Value: 100
+  ThisPrefab: {fileID: 0}
   RequiredTrial: 3
   EquipmentRank: 1
   EnhanceChance: 84.9999
   NextItem: {fileID: 100000, guid: 3eb926ed3589adb47873cb1790057798, type: 3}
   Effect: {fileID: 0}
   FailureEffect: {fileID: 9080140021571130472, guid: 82066d902ed0dd6488ddfd32eb994801, type: 3}
+  FlavorText: Wooden Shield was actually cheaper but more effective than the time
+    of old ages of people's thought.

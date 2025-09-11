@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Banded Spiked Wooden Shield
   Value: 300
+  ThisPrefab: {fileID: 0}
   RequiredTrial: 4
   EquipmentRank: 3
   EnhanceChance: 50.0001
   NextItem: {fileID: 100000, guid: 6db9dc1a9d61b6648a71440ab00bb8fe, type: 3}
   Effect: {fileID: 1193953125369175018, guid: 7d39067bead4bc14aa0b451564aa5198, type: 3}
   FailureEffect: {fileID: 9080140021571130472, guid: 82066d902ed0dd6488ddfd32eb994801, type: 3}
+  FlavorText: At least, something is added; what could be wrong?

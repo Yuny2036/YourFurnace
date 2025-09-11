@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Spiked Wooden Round Shield
   Value: 175
-  ThisPrefab: {fileID: 0}
+  ThisPrefab: {fileID: 100000, guid: 3eb926ed3589adb47873cb1790057798, type: 3}
   RequiredTrial: 3
   EquipmentRank: 2
   EnhanceChance: 64.4999

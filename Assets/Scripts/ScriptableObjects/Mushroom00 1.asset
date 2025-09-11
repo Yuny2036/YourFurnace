@@ -16,7 +16,7 @@ MonoBehaviour:
   Value: 0
   RequiredTrial: -1
   MaximumStacks: 1
-  ThisPrefab: {fileID: 0}
+  ThisPrefab: {fileID: 195220, guid: a5d1138742629d940ba6df4373f57310, type: 3}
   NextItem: {fileID: 0}
   EffectOnDestory: {fileID: 7834434380170384362, guid: 68101499d07aced4aa0ded4acb624942, type: 3}
   baseID: 00000001

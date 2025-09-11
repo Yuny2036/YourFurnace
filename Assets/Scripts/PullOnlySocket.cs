@@ -32,10 +32,17 @@ public class PullOnlySocket : XRSocketInteractor
         if (!hasSelection) return false;
         return base.CanSelect(interactable);
     }
+   
 
     // Methods: User Made
     void OnItemSlot(SelectEnterEventArgs args) => args.interactableObject.transform.localScale = _SmallSized;
-    void OutOfItemSlot(SelectExitEventArgs args) => args.interactableObject.transform.localScale = _OriginalSized;
+    void OutOfItemSlot(SelectExitEventArgs args)
+    {
+        // ItemInstance readyToInventory = args.interactableObject.transform.GetComponent<Item>().ToItemInstance();
+        // InventoryManager.InventoryInstance.TakeFromInventory(readyToInventory);
+
+        args.interactableObject.transform.localScale = _OriginalSized;
+    }
 
     // Private fields
     Vector3 _SmallSized = new Vector3(0.2f, 0.2f, 0.2f);

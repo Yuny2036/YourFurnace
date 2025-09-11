@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Leather Shield
   Value: 500
-  ThisPrefab: {fileID: 0}
+  ThisPrefab: {fileID: 100000, guid: 6db9dc1a9d61b6648a71440ab00bb8fe, type: 3}
   RequiredTrial: 5
   EquipmentRank: 4
   EnhanceChance: 25.3334

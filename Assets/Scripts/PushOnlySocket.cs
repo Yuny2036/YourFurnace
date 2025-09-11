@@ -19,17 +19,39 @@ public class PushOnlySocket : XRSocketInteractor
         selectEntered.RemoveListener(OnObjectPlaced);
     }
 
+    // private void OnObjectPlacedAsync(SelectEnterEventArgs args)
+    // {
+    //     OnObjectPlacedAsync(args).Forget();
+    // }
+
     // Methods
     private void OnObjectPlaced(SelectEnterEventArgs args)
     {
         // Check item if is puttable
         Transform itemToPutIn = args.interactableObject.transform;
-        if (itemToPutIn.TryGetComponent<ItemInstance>(out var i))
+        if (itemToPutIn.TryGetComponent<Item>(out var i))
         {
-            // If yes, put it and destory the world object.
-            InventoryManager.InventoryInstance.PutInInventory(i);
-            Destroy(itemToPutIn.gameObject);
-            return;
+            switch (i)
+            {
+                case EquipmentItem ei:
+                    ItemInstance eii = ei.ToItemInstance();
+                    InventoryManager.InventoryInstance.PutInInventory(eii);
+                    Debug.LogWarning(eii.ThisPrefab);
+                    Destroy(itemToPutIn.gameObject);
+                    break;
+                case PropsItem pi:
+                    ItemInstance pii = pi.ToItemInstance();
+                    InventoryManager.InventoryInstance.PutInInventory(pii);
+                    Destroy(itemToPutIn.gameObject);
+                    break;
+            }
+            // // If yes, put it and destory the world object.
+            // ItemInstance instancedItem = i.ToItemInstance();
+            // // Debug.LogWarning(instancedItem.ItemName);
+
+            // InventoryManager.InventoryInstance.PutInInventory(instancedItem);
+            // Destroy(itemToPutIn.gameObject);
+            // return;
         }
 
         // If no, drop it.
@@ -41,6 +63,6 @@ public class PushOnlySocket : XRSocketInteractor
         ** {
         **     grabInteractable.enabled = false;
         ** }
-        */ 
+        */
     }
 }

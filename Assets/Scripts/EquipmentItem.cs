@@ -1,10 +1,11 @@
 using System;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public abstract class EquipmentItem : Item, IHammerable
 {
     // Serialized Fields
-    [SerializeField] protected EquipmentData equipmentData;
+    [SerializeField] public EquipmentData equipmentData;
     // Properties
     public override string ItemName
     {
@@ -57,6 +58,8 @@ public abstract class EquipmentItem : Item, IHammerable
         ItemInstance itemInstance = new EquipmentItemInstance(equipmentData, UniqueID);
         itemInstance.ItemName = ItemName;
         itemInstance.MoneyValue = MoneyValue;
+
+        // Debug.LogWarning($"{equipmentData}, {equipmentData.ItemName}");
 
         return itemInstance as EquipmentItemInstance;
     }

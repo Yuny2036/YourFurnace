@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Banded Spiked Wooden Shield
   Value: 300
-  ThisPrefab: {fileID: 0}
+  ThisPrefab: {fileID: 100000, guid: ea7498808a3368a40a625f84c1fd12ae, type: 3}
   RequiredTrial: 4
   EquipmentRank: 3
   EnhanceChance: 50.0001

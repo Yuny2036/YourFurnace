@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
@@ -19,7 +20,7 @@ public class InventoryManager : MonoBehaviour
 
     // Properties and Fields
     readonly List<ItemInstance> InventoryList = new List<ItemInstance>();
-    readonly XRSocketInteractor[] XRSocketInteractors;
+    private PullOnlySocket[] XRSocketInteractors;
 
 
     // Unity Lifecycle
@@ -35,6 +36,9 @@ public class InventoryManager : MonoBehaviour
             _InventoryInstance = this;
             DontDestroyOnLoad(gameObject);
         }
+
+        PullOnlySocket[] sockets = GetComponentsInChildren<PullOnlySocket>();
+        XRSocketInteractors = sockets;
     }
 
     // Methods

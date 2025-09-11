@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Alloy-coated Steel Heater Shield
   Value: 4450
-  ThisPrefab: {fileID: 0}
+  ThisPrefab: {fileID: 100000, guid: 5e018199f6a604540bffe737772ac093, type: 3}
   RequiredTrial: 15
   EquipmentRank: 7
   EnhanceChance: 4.4999

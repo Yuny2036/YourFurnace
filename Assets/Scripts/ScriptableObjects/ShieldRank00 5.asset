@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Iron Round Shield
   Value: 900
-  ThisPrefab: {fileID: 0}
+  ThisPrefab: {fileID: 100000, guid: be6b7eb8095b9b24f93f3fa0b10891b2, type: 3}
   RequiredTrial: 10
   EquipmentRank: 5
   EnhanceChance: 16.9999

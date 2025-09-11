@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Wooden Round Shield
   Value: 100
-  ThisPrefab: {fileID: 0}
+  ThisPrefab: {fileID: 100000, guid: 166ff3004741e294a8570ebfc2385bd2, type: 3}
   RequiredTrial: 3
   EquipmentRank: 1
   EnhanceChance: 84.9999

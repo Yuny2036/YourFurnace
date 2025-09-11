@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Steel Heater Shield
   Value: 1625
-  ThisPrefab: {fileID: 0}
+  ThisPrefab: {fileID: 100000, guid: 80166c6c4af61be41afc8d5da8254299, type: 3}
   RequiredTrial: 10
   EquipmentRank: 6
   EnhanceChance: 9.9998

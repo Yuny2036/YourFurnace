@@ -31,27 +31,26 @@ public class PushOnlySocket : XRSocketInteractor
         Transform itemToPutIn = args.interactableObject.transform;
         if (itemToPutIn.TryGetComponent<Item>(out var i))
         {
-            switch (i)
-            {
-                case EquipmentItem ei:
-                    ItemInstance eii = ei.ToItemInstance();
-                    InventoryManager.InventoryInstance.PutInInventory(eii);
-                    Debug.LogWarning(eii.ThisPrefab);
-                    Destroy(itemToPutIn.gameObject);
-                    break;
-                case PropsItem pi:
-                    ItemInstance pii = pi.ToItemInstance();
-                    InventoryManager.InventoryInstance.PutInInventory(pii);
-                    Destroy(itemToPutIn.gameObject);
-                    break;
-            }
-            // // If yes, put it and destory the world object.
-            // ItemInstance instancedItem = i.ToItemInstance();
-            // // Debug.LogWarning(instancedItem.ItemName);
+            // switch (i)
+            // {
+            //     case EquipmentItem ei:
+            //         ItemInstance eii = ei.ToItemInstance();
+            //         InventoryManager.InventoryInstance.PutInInventory(eii);
+            //         Debug.LogWarning(eii.ThisPrefab);
+            //         Destroy(itemToPutIn.gameObject);
+            //         break;
+            //     case PropsItem pi:
+            //         ItemInstance pii = pi.ToItemInstance();
+            //         InventoryManager.InventoryInstance.PutInInventory(pii);
+            //         Destroy(itemToPutIn.gameObject);
+            //         break;
+            // }
 
-            // InventoryManager.InventoryInstance.PutInInventory(instancedItem);
-            // Destroy(itemToPutIn.gameObject);
-            // return;
+            // If yes, put it and destory the world object.
+            ItemInstance instancedItem = i.ToItemInstance();
+            InventoryManager.InventoryInstance.PutInInventory(instancedItem);
+            Destroy(itemToPutIn.gameObject);
+            return;
         }
 
         // If no, drop it.

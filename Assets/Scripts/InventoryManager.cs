@@ -2,8 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit.Interactables;
-using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -19,7 +17,8 @@ public class InventoryManager : MonoBehaviour
 
     // Properties and Fields
     readonly List<ItemInstance> InventoryList = new List<ItemInstance>();
-    private PullOnlySocket[] XRSocketInteractors;
+    [SerializeField] private GameObject characterPanel;
+    private GameObject itemButtonPrefab;
 
 
     // Unity Lifecycle
@@ -36,8 +35,7 @@ public class InventoryManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
 
-        PullOnlySocket[] sockets = GetComponentsInChildren<PullOnlySocket>();
-        XRSocketInteractors = sockets;
+        itemButtonPrefab = Resources.Load<GameObject>("ItemButton");
     }
 
     // Methods
@@ -46,41 +44,39 @@ public class InventoryManager : MonoBehaviour
         switch (itemInstance)
         {
             case EquipmentItemInstance eii:
-                // Is the exactly same item already in the inventory?
                 if (InventoryList.Contains(eii)) throw new ArgumentException("You're trying to put the exact same entity in. How did you do..?");
                 PutItemInNewSlot(eii);
 
-                // if (!InventoryList.Any(item => item is EquipmentItemInstance existingItem && existingItem.UniqueID == eii.UniqueID))
                 break;
 
             case PropsItemInstance pii:
-                // Get the existing item from the inventory.
                 var existingItem = InventoryList
                 .OfType<PropsItemInstance>()
-                .FirstOrDefault(item => item.baseData.baseID == pii.baseData.baseID);
+                .Where(p => p.baseData.baseID == pii.baseData.baseID)
+                .ToList();
+                // .FirstOrDefault(item => item.baseData.baseID == pii.baseData.baseID);
 
-                // When there's the item.
                 if (existingItem != null)
                 {
-                    // Calculate how many stack can be added into the existing one.
-                    int stackLeft = existingItem.baseData.MaximumStacks - existingItem.CurrentStacks;
-
-                    // Space left is bigger than one you're trying?
-                    // If yes,
-                    if (pii.CurrentStacks <= stackLeft)
+                    int spaceLeft;
+                    foreach (var prop in existingItem)
                     {
-                        existingItem.CurrentStacks += pii.CurrentStacks;
-                    }
-                    // If no,
-                    else
-                    {
-                        existingItem.CurrentStacks += stackLeft;
+                        spaceLeft = prop.baseData.MaximumStacks - prop.CurrentStacks;
 
-                        // Get remaining items' count.
-                        var remainingItem = new PropsItemInstance(pii.baseData, pii.CurrentStacks - stackLeft);
+                        if (spaceLeft <= 0) continue;
 
-                        // Put em in the new slot
-                        PutItemInNewSlot(remainingItem);
+                        if (pii.CurrentStacks <= spaceLeft)
+                        {
+                            prop.CurrentStacks += pii.CurrentStacks;
+                        }
+                        else
+                        {
+                            prop.CurrentStacks += spaceLeft;
+
+                            var remainingItem = new PropsItemInstance(pii.baseData, pii.CurrentStacks - spaceLeft);
+
+                            PutItemInNewSlot(remainingItem);
+                        }
                     }
                 }
                 else
@@ -88,24 +84,6 @@ public class InventoryManager : MonoBehaviour
                     PutItemInNewSlot(pii);
                 }
                 break;
-
-                // ======
-                // The code scraps are the trace of my trials and errors.
-                // ======
-                // if (!InventoryList.Any(item => item is PropsItemInstance))
-                // {
-                //     if (InventoryList.Count >= 5) throw new ArgumentOutOfRangeException("Inventory is full; Maximum is 4.");
-
-                //     InventoryList.Add(pii);
-                // }
-                // else if (
-                //     InventoryList.Any(item => item is PropsItemInstance existingItem &&
-                //     existingItem.baseData.ItemName == pii.baseData.ItemName)
-                //     )
-                // {
-
-                // }
-                // break;
         }
 
         ShowItemInInventory();
@@ -135,7 +113,6 @@ public class InventoryManager : MonoBehaviour
 
     private void RemoveItemFromInventory(ItemInstance itemInstance)
     {
-        // Sorry, My laziness makes me not to create a new ToString() format..
         if (!InventoryList.Contains(itemInstance)) throw new NullReferenceException($"There's no such item to discard. How did you do..? : {itemInstance}");
         InventoryList.Remove(itemInstance);
     }
@@ -149,42 +126,14 @@ public class InventoryManager : MonoBehaviour
 
     private void ShowItemInInventory()
     {
-        int i = 0;
-
-        foreach (var held in XRSocketInteractors)
+        // Destory all before re-render
+        for (int i = characterPanel.transform.childCount - 1; i >= 0; i--)
         {
-            if (held.interactablesSelected[0] != null) Destroy(held.interactablesSelected[0] as Component);
+            Transform child = transform.GetChild(i);
+            if (child.tag == "InventoryItemButton") Destroy(child.gameObject);
         }
 
-        foreach (ItemInstance item in InventoryList)
-        {
-            if (item == null) continue;
-            if (item.ThisPrefab == null)
-            {
-                Debug.LogWarning("This item has no Prefab data!");
-                return;
-            }
-
-            GameObject prefab = Instantiate(item.ThisPrefab);
-            if (prefab.GetComponent<XRGrabInteractable>() == null)
-            {
-                Debug.LogError("This item has no XRGrabInteractable component!");
-                Destroy(prefab);
-                return;
-            }
-
-            prefab.transform.position = XRSocketInteractors[i].transform.position;
-            prefab.transform.rotation = XRSocketInteractors[i].transform.rotation;
-
-            XRGrabInteractable grabInteractable = prefab.GetComponent<XRGrabInteractable>();
-            if (grabInteractable != null)
-            {
-                XRSocketInteractors[i]
-                .interactionManager
-                .SelectEnter((IXRSelectInteractor)XRSocketInteractors[i], grabInteractable);
-            }
-            // grabInteractable.staySelectedOnDrop = true; this doesn't need; my thought.
-        }
+        
     }
 
 

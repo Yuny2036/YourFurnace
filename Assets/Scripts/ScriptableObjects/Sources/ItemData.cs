@@ -11,6 +11,5 @@ public abstract class ItemData : ScriptableObject
     public GameObject NextItem;
     public string FlavorText;
     [Header("Destroy Effect")]
-    public GameObject FailureEffect = null;
-    
+    public GameObject FailureEffect = null;    
 }

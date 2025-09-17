@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Sword
   - Shield
+  - InventoryItemButton
   layers:
   - Default
   - TransparentFX

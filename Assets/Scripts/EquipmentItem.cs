@@ -1,8 +1,8 @@
 using System;
-using Cysharp.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public abstract class EquipmentItem : Item, IHammerable
+public abstract class EquipmentItem : Item, IHammerable, ITransferable<EquipmentItemInstance>
 {
     // Serialized Fields
     [SerializeField] public EquipmentData equipmentData;
@@ -23,7 +23,7 @@ public abstract class EquipmentItem : Item, IHammerable
             _MoneyValue = Math.Max(0, value);
         }
     }
-    public Guid UniqueID { get; private set; }
+    public Guid UniqueID { get; protected set; }
     public int HammerTrial { get; set; } // No need to be stored when going into the inventory.
 
     // Methods
@@ -32,7 +32,7 @@ public abstract class EquipmentItem : Item, IHammerable
     {
         // Initialize item
         // This is the same element you should return, when you take it from the inventory.
-        if (UniqueID == null)
+        if (UniqueID == Guid.Empty)
         {
             UniqueID = Guid.NewGuid();
 
@@ -41,6 +41,9 @@ public abstract class EquipmentItem : Item, IHammerable
             MoneyValue = equipmentData.Value;
         }
         HammerTrial = equipmentData.RequiredTrial;
+
+        Debug.LogWarning($"-1 {MoneyValue}, {ItemName}, {HammerTrial}, {UniqueID}");
+
     }
 
     public virtual void Hammer()
@@ -59,9 +62,15 @@ public abstract class EquipmentItem : Item, IHammerable
         itemInstance.ItemName = ItemName;
         itemInstance.MoneyValue = MoneyValue;
 
-        // Debug.LogWarning($"{equipmentData}, {equipmentData.ItemName}");
+        // Debug.LogWarning($"0 {itemInstance}, {itemInstance.ItemName}");
 
         return itemInstance as EquipmentItemInstance;
+    }
+
+    public void TransferData(EquipmentItemInstance package)
+    {
+        equipmentData = package.baseData;
+        UniqueID = package.UniqueID;
     }
 
     // Internal fields

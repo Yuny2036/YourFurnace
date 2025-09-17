@@ -44,12 +44,14 @@ public class InventoryManager : MonoBehaviour
         switch (itemInstance)
         {
             case EquipmentItemInstance eii:
+                Debug.LogWarning($"2 {eii.ItemName}, {eii.UniqueID}");
                 if (InventoryList.Contains(eii)) throw new ArgumentException("You're trying to put the exact same entity in. How did you do..?");
                 PutItemInNewSlot(eii);
 
                 break;
 
             case PropsItemInstance pii:
+                Debug.LogWarning("2 Props");
                 var existingItem = InventoryList
                 .OfType<PropsItemInstance>()
                 .Where(p => p.baseData.baseID == pii.baseData.baseID)
@@ -94,6 +96,9 @@ public class InventoryManager : MonoBehaviour
         switch (itemInstance)
         {
             case EquipmentItemInstance eii:
+                GameObject eiGameObject = Instantiate(eii.ThisPrefab);
+                eiGameObject.TryGetComponent<EquipmentItem>(out var ei);
+                ei.TransferData(eii);
                 RemoveItemFromInventory(eii);
                 break;
             case PropsItemInstance pii:
@@ -105,7 +110,13 @@ public class InventoryManager : MonoBehaviour
                 {
                     RemoveItemFromInventory(pii);
                 }
+                GameObject piGameObject = Instantiate(pii.ThisPrefab);
                 break;
+        }
+
+        foreach (var item in InventoryList)
+        {
+            Debug.LogWarning($"{item.ItemName}");
         }
 
         ShowItemInInventory();
@@ -126,11 +137,20 @@ public class InventoryManager : MonoBehaviour
 
     private void ShowItemInInventory()
     {
+        Debug.LogWarning($"3 {InventoryList.Count} of items are in.");
+
         // Destory all before re-render
         for (int i = characterPanel.transform.childCount - 1; i >= 0; i--)
         {
-            Transform child = transform.GetChild(i);
+            Transform child = characterPanel.transform.GetChild(i);
             if (child.tag == "InventoryItemButton") Destroy(child.gameObject);
+        }
+
+        foreach (var item in InventoryList)
+        {
+            GameObject prefab = Instantiate(itemButtonPrefab, characterPanel.transform);
+            prefab.TryGetComponent<InventoryButton>(out var iButton);
+            if (iButton != null) iButton.ItemInstance = item;
         }
 
         

@@ -18,6 +18,9 @@ public class PropsItemInstance : ItemInstance
     {
         this.baseData = baseData;
         this.CurrentStacks = CurrentStacks;
+
+        ItemName = baseData.ItemName;
+        MoneyValue = baseData.Value;
         ThisPrefab = baseData.ThisPrefab;
     }
 }

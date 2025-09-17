@@ -1,3 +1,4 @@
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
@@ -7,16 +8,16 @@ public class PushOnlySocket : XRSocketInteractor
     // Unity Lifecycle
     protected override void Awake()
     {
+        selectEntered.AddListener(OnObjectPlaced);
         base.Awake();
 
-        selectEntered.AddListener(OnObjectPlaced);
     }
 
     protected override void OnDestroy()
     {
+        selectEntered.RemoveListener(OnObjectPlaced);
         base.OnDestroy();
 
-        selectEntered.RemoveListener(OnObjectPlaced);
     }
 
     // private void OnObjectPlacedAsync(SelectEnterEventArgs args)
@@ -47,8 +48,32 @@ public class PushOnlySocket : XRSocketInteractor
             // }
 
             // If yes, put it and destory the world object.
-            ItemInstance instancedItem = i.ToItemInstance();
-            InventoryManager.InventoryInstance.PutInInventory(instancedItem);
+            // ItemInstance instancedItem = i.ToItemInstance();
+            // switch (i.ToItemInstance())
+            // {
+            //     case EquipmentItemInstance eii:
+            //         InventoryManager.InventoryInstance.PutInInventory(eii);
+            //         Debug.LogWarning(eii.ItemName);
+            //         break;
+            //     case PropsItemInstance pii:
+            //         InventoryManager.InventoryInstance.PutInInventory(pii);
+            //         Debug.LogWarning(pii.ItemName);
+            //         break;
+            // }
+            switch (i)
+            {
+                case EquipmentItem ei:
+                    ItemInstance eii = ei.ToItemInstance() as EquipmentItemInstance;
+                    InventoryManager.InventoryInstance.PutInInventory(eii);
+                    Debug.LogWarning($"1 {eii.ItemName}");
+                    break;
+                case PropsItem pi:
+                    ItemInstance pii = pi.ToItemInstance() as PropsItemInstance;
+                    InventoryManager.InventoryInstance.PutInInventory(pii);
+                    Debug.LogWarning($"1 {pii.ItemName}");
+                    break;
+            }
+
             Destroy(itemToPutIn.gameObject);
             return;
         }

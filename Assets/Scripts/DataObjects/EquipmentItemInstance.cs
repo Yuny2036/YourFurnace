@@ -19,6 +19,9 @@ public class EquipmentItemInstance : ItemInstance
     {
         this.baseData = baseData;
         this.UniqueID = UniqueID;
-        ThisPrefab = baseData.ThisPrefab;
+
+        ItemName = this.baseData.ItemName;
+        MoneyValue = this.baseData.Value;
+        ThisPrefab = this.baseData.ThisPrefab;
     }
 }

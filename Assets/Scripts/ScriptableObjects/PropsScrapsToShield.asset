@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 908b2defffae0ff4f8b804fab945d51a, type: 3}
   m_Name: PropsScrapsToShield
   m_EditorClassIdentifier: 
-  ItemName: Default Prop
+  ItemName: Scraps
   Value: 0
-  RequiredTrial: 3
-  MaximumStacks: 1
   ThisPrefab: {fileID: 100000, guid: e8ac39b24a9fbad49a5d57d90efb6d7b, type: 3}
+  RequiredTrial: 3
   NextItem: {fileID: 100000, guid: 166ff3004741e294a8570ebfc2385bd2, type: 3}
-  EffectOnDestory: {fileID: 9080140021571130472, guid: 82066d902ed0dd6488ddfd32eb994801, type: 3}
-  baseID: 00000000
   FlavorText: The very beginning of all things.
+  FailureEffect: {fileID: 0}
+  MaximumStacks: 1
+  baseID: 00000000

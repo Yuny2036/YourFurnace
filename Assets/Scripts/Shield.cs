@@ -49,15 +49,21 @@ public class Shield : EquipmentItem, IHeatable
             {
                 // SUCCESS
                 GameObject newItem = Instantiate(equipmentData.NextItem, transform.position, Quaternion.identity);
-                GameObject successFX = Instantiate(equipmentData.Effect, transform.position, Quaternion.identity);
-                Destroy(successFX, 1.8f);
+                if (equipmentData.Effect != null)
+                {
+                    GameObject successFX = Instantiate(equipmentData.Effect, transform.position, Quaternion.identity);
+                    Destroy(successFX, 1.8f);
+                }
                 Destroy(gameObject);
             }
             else
             {
                 // FAIL
-                GameObject failFX = Instantiate(equipmentData.FailureEffect, transform.position, Quaternion.identity);
-                Destroy(failFX, 1.8f);
+                if (equipmentData.FailureEffect != null)
+                {
+                    GameObject failFX = Instantiate(equipmentData.FailureEffect, transform.position, Quaternion.identity);
+                    Destroy(failFX, 1.8f);
+                }
                 Destroy(gameObject);
             }
         }

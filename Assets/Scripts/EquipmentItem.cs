@@ -36,10 +36,10 @@ public abstract class EquipmentItem : Item, IHammerable, ITransferable<Equipment
         {
             UniqueID = Guid.NewGuid();
 
-            // If you don't need enchanting/name or something, then these don't have to be placed here; go out of block.
-            ItemName = equipmentData.ItemName;
-            MoneyValue = equipmentData.Value;
         }
+        // If you don't need enchanting/name or something, then these don't have to be placed here; go out of block.
+        ItemName = equipmentData.ItemName;
+        MoneyValue = equipmentData.Value;
         HammerTrial = equipmentData.RequiredTrial;
 
         Debug.LogWarning($"-1 {MoneyValue}, {ItemName}, {HammerTrial}, {UniqueID}");

@@ -58,7 +58,7 @@ public class InventoryManager : MonoBehaviour
                 .ToList();
                 // .FirstOrDefault(item => item.baseData.baseID == pii.baseData.baseID);
 
-                if (existingItem != null)
+                if (existingItem.Count != 0)
                 {
                     int spaceLeft;
                     foreach (var prop in existingItem)
@@ -96,10 +96,13 @@ public class InventoryManager : MonoBehaviour
         switch (itemInstance)
         {
             case EquipmentItemInstance eii:
-                GameObject eiGameObject = Instantiate(eii.ThisPrefab);
+                GameObject eiGameObject = Instantiate(eii.ThisPrefab, dropPosition.position, dropPosition.rotation);
                 eiGameObject.TryGetComponent<EquipmentItem>(out var ei);
-                ei.TransferData(eii);
-                RemoveItemFromInventory(eii);
+                if (ei != null)
+                {
+                    ei.TransferData(eii);
+                    RemoveItemFromInventory(eii);
+                }
                 break;
             case PropsItemInstance pii:
                 if (pii.CurrentStacks - 1 > 0)
@@ -110,7 +113,7 @@ public class InventoryManager : MonoBehaviour
                 {
                     RemoveItemFromInventory(pii);
                 }
-                GameObject piGameObject = Instantiate(pii.ThisPrefab);
+                GameObject piGameObject = Instantiate(pii.ThisPrefab, dropPosition.position, dropPosition.rotation);
                 break;
         }
 
@@ -159,5 +162,6 @@ public class InventoryManager : MonoBehaviour
 
     // Internal fields
     private static InventoryManager _InventoryInstance;
+    [SerializeField] private Transform dropPosition;
     private int maximumSize = 4;
 }

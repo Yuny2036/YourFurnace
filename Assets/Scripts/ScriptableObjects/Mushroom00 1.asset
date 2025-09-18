@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 908b2defffae0ff4f8b804fab945d51a, type: 3}
   m_Name: Mushroom00 1
   m_EditorClassIdentifier: Assembly-CSharp::PropsData
-  ItemName: Default Prop
+  ItemName: Mushroom
   Value: 0
-  RequiredTrial: -1
-  MaximumStacks: 1
   ThisPrefab: {fileID: 195220, guid: a5d1138742629d940ba6df4373f57310, type: 3}
+  RequiredTrial: -1
   NextItem: {fileID: 0}
-  EffectOnDestory: {fileID: 7834434380170384362, guid: 68101499d07aced4aa0ded4acb624942, type: 3}
-  baseID: 00000001
   FlavorText: Don't try eating this; Just hand it over coals.
+  FailureEffect: {fileID: 0}
+  MaximumStacks: 1
+  baseID: 00000001
